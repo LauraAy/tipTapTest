@@ -1,15 +1,38 @@
 /* Basic editor styles */
 .ProseMirror{
   padding: 10px;
-  border: 1px solid black;
+  // border: 1px solid black;
   border-radius: 5px
 }
 
+.menu-bar {
+  // padding-bottom: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  button {
+    height: 45px;
+    width: 49px;
+    font-size: 26px;
+    outline: none;
+    border: none;
+    color: purple;
+    background: none;
+  }
+
+  button.is-active{
+    color: red;
+    background: rbg(197, 197, 197);
+    padding: 2px 3px;
+    border-radius: 2px;
+  }
+}
+
+
+
 
 .tiptap {
-  button {
-    height: 60px;
-  }
 
     > * + * {
       margin-top: 0.75em;

@@ -6,7 +6,7 @@ import TextStyle from '@tiptap/extension-text-style'
 import { EditorProvider, useCurrentEditor } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import React from 'react'
-import {FaBold, FaItalic, FaStrikethrough, FaParagraph, FaHeading, FaListOl, FaListUl, FaUndo, FaRedo, FaMinus, FaUnderline } from 'react-icons/fa';
+import {FaBold, FaItalic, FaStrikethrough, FaParagraph, FaHeading, FaListOl, FaListUl, FaUndo, FaRedo, FaMinus, FaUnderline, FaBlackTie } from 'react-icons/fa';
 import Underline from '@tiptap/extension-underline'
 import TextAlign from '@tiptap/extension-text-align'
 import { FormatBoldOutlined, FormatItalicOutlined, FormatUnderlinedOutlined, StrikethroughSOutlined,
@@ -30,8 +30,8 @@ const MenuBar = () => {
 
   return (
   <>
-    <Box ml={1}>
-  
+    <Box ml={1} className='menu-bar'>
+      <div>
       <button
         onClick={() => editor.chain().focus().toggleBold().run()}
         disabled={
@@ -67,7 +67,7 @@ const MenuBar = () => {
             .toggleUnderline()
             .run()
         }
-        className={editor.isActive('italic') ? 'is-active' : ''}
+        className={editor.isActive('underline') ? 'is-active' : ''}
       >
         <FormatUnderlinedOutlined />
       </button>
@@ -85,11 +85,12 @@ const MenuBar = () => {
         <StrikethroughSOutlined />
       </button>
       <button
-        onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
-        className={editor.isActive('heading', { level: 1 }) ? 'is-active' : ''}
+        onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
+        className={editor.isActive('heading', { level: 2 }) ? 'is-active' : ''}
       >
        <TitleOutlined />
       </button>
+    
       <button
         onClick={() => editor.chain().focus().toggleBulletList().run()}
         className={editor.isActive('bulletList') ? 'is-active' : ''}
@@ -105,6 +106,8 @@ const MenuBar = () => {
       <button onClick={() => editor.chain().focus().setHorizontalRule().run()}>
         <HorizontalRuleOutlined />
       </button>
+      </div>
+      <div>
       <button
         onClick={() => editor.chain().focus().undo().run()}
         disabled={
@@ -129,13 +132,7 @@ const MenuBar = () => {
       >
         <RedoOutlined />
       </button>
-      {/* <button
-        onClick={() => editor.chain().focus().setColor('#958DF1').run()}
-        className={editor.isActive('textStyle', { color: '#958DF1' }) ? 'is-active' : ''}
-      >
-        purple
-      </button> */}
-    
+      </div>
     </Box>
   </>
   )
@@ -179,7 +176,7 @@ const content = `
 
 const TipTap = () => {
   return (
-  <Box m={20} >
+  <Box m={2} sx={{ border: 1, borderColor: 'text.primary', borderRadius: '5px'}}>
     <EditorProvider 
       slotBefore={<MenuBar />} 
       extensions={extensions} 
